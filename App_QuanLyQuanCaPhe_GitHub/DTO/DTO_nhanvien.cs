@@ -11,5 +11,8 @@ namespace DTO
         public int STT { get; set; }
         public String MaChiNhanh { get; set; }
         public String MaNV { get; set; }
+        public String TenNhanVien { get; set; }
+        public String NamSinh { get; set; }
     }
+
 }
