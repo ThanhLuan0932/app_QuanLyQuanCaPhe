@@ -11,5 +11,13 @@ namespace BUS
     {
         DAO_KetNoi xl = new DAO_KetNoi();
         DTO_NhanVien dl = new DTO_NhanVien();
+        public DataTable ThongTinNhanVien_Select(DTO_NhanVien dl)
+        {
+            return xl.table_Select("select STT,TenChiNhanh,NhanVien.MaNV,ViTri,TenNhanVien,NamSinh,SDT from NhanVien,ViTriNhanVien,ChiNhanh where ChiNhanh.MaChiNhanh = NhanVien.MaChiNhanh and ViTriNhanVien.MaNV = NhanVien.MaNV and ChiNhanh.MaChiNhanh='" + dl.MaChiNhanh + "'");
+        }
+        public DataTable TatCaThongTinNhanVien_Select(DTO_NhanVien dl)
+        {
+            return xl.table_Select("select STT,TenChiNhanh,NhanVien.MaNV,ViTri,TenNhanVien,NamSinh,SDT from NhanVien,ViTriNhanVien,ChiNhanh where ChiNhanh.MaChiNhanh = NhanVien.MaChiNhanh and ViTriNhanVien.MaNV = NhanVien.MaNV ");
+        }
     }
 }
