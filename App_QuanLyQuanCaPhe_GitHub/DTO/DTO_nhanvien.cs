@@ -13,6 +13,8 @@ namespace DTO
         public String MaNV { get; set; }
         public String TenNhanVien { get; set; }
         public String NamSinh { get; set; }
+        public String SDT { get; set; }
+        public String ViTri { get; set; }
     }
 
 }
