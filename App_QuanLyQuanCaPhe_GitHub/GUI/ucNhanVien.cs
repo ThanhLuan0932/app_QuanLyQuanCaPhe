@@ -20,5 +20,10 @@ namespace GUI
         {
 
         }
+
+        private void btnXemTatCa_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
