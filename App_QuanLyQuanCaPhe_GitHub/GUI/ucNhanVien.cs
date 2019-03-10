@@ -23,7 +23,10 @@ namespace GUI
 
         private void ucNhanVien_Load(object sender, EventArgs e)
         {
-
+            txtTim.Enabled = false;
+            cbChonChiNhanh.DataSource = xldl.ChiNhanh_select(dl);
+            cbChonChiNhanh.DisplayMember = "TenChiNhanh";
+            cbChonChiNhanh.ValueMember = "MaChiNhanh";
         }
 
         private void btnXemTatCa_Click(object sender, EventArgs e)
