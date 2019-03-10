@@ -5,7 +5,10 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using BUS;
+using DTO;
 
 namespace GUI
 {
@@ -15,6 +18,8 @@ namespace GUI
         {
             InitializeComponent();
         }
+        BUS_NhanVien xldl = new BUS_NhanVien();
+        DTO_NhanVien dl = new DTO_NhanVien();
 
         private void ucNhanVien_Load(object sender, EventArgs e)
         {
@@ -22,6 +27,11 @@ namespace GUI
         }
 
         private void btnXemTatCa_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtgNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

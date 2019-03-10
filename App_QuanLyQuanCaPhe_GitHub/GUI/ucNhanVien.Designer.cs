@@ -298,6 +298,7 @@
             this.dtgNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgNhanVien.Size = new System.Drawing.Size(759, 291);
             this.dtgNhanVien.TabIndex = 26;
+            this.dtgNhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgNhanVien_CellContentClick);
             // 
             // MaNV
             // 
