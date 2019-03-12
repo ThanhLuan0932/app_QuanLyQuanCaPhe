@@ -212,7 +212,7 @@
             // txtMatKhauDangNhap
             // 
             this.txtMatKhauDangNhap.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMatKhauDangNhap.Location = new System.Drawing.Point(378, 186);
+            this.txtMatKhauDangNhap.Location = new System.Drawing.Point(400, 190);
             this.txtMatKhauDangNhap.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMatKhauDangNhap.Name = "txtMatKhauDangNhap";
             this.txtMatKhauDangNhap.PasswordChar = '*';
