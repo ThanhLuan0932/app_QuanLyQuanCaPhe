@@ -1,33 +1,137 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using BUS;
 using DAO;
 using DTO;
-using System.Data;
-
-namespace BUS
+namespace GUI
 {
-    public class BUS_HoaDon
+    public partial class ucQuanLy_LoaiSanPham : UserControl
     {
-        DAO_KetNoi xl = new DAO_KetNoi();
-        DTO_HoaDon dl = new DTO_HoaDon();
-        public DataTable TuNgayDenNgay_Select(DTO_HoaDon dl)
+        public ucQuanLy_LoaiSanPham()
         {
-            return xl.table_Select("set dateformat dmy select MaNV,HoaDon.MaHD,HoaDon.Ngay,HoaDon.Gio,TenDoUong,DonGia,SlMua,Tong from HoaDon,ChiTietBanHang where HoaDon.MaHD=ChiTietBanHang.MaHD and HoaDon.Ngay >='" + dl.TuNgay + "' and HoaDon.Ngay <= '" + dl.DenNgay + "' and HoaDon.MaChiNhanh='" + dl.MaChiNhanh + "' order by Ngay desc");
+            InitializeComponent();
         }
-        public DataTable TongTienThongKe_Select(DTO_HoaDon dl)
+        BUS_QuanLy xldl = new BUS_QuanLy();
+        DTO_QuanLy dl = new DTO_QuanLy();
+        void Binding()
         {
-            return xl.table_Select("set dateformat dmy select Sum(Tong) as [TatCa] from HoaDon,ChiTietBanHang where HoaDon.MaHD=ChiTietBanHang.MaHD and HoaDon.Ngay >='" + dl.TuNgay + "' and HoaDon.Ngay <= '" + dl.DenNgay + "' and HoaDon.MaChiNhanh='" + dl.MaChiNhanh + "'");
+            txtChonLoai.DataBindings.Clear();
+            txtChonLoai.DataBindings.Add("Text", dtgMenu.DataSource, "TenLoai");
+            txtMaLoai.DataBindings.Clear();
+            txtMaLoai.DataBindings.Add("Text", dtgMenu.DataSource, "MaLoai");
         }
-        public DataTable Gio_Select(DTO_HoaDon dl)
+        void Clear()
         {
-            return xl.table_Select("set dateformat dmy select Gio, TenDoUong,sum(Tong) as [Tong] from ChiTietBanHang where MaChiNhanh ='" + dl.MaChiNhanh + "' group by Gio, TenDoUong order by sum(Tong) desc");
+            txtChonLoai.ResetText();
+            txtMaLoai.Clear();
         }
-        public DataTable ChiNhanh_select(DTO_HoaDon dl)
+        private void Enable_False()
         {
-            return xl.table_Select("select * from ChiNhanh");
+            txtChonLoai.Enabled = false;
         }
+        private void Enable_True()
+        {
+            txtChonLoai.Enabled = true;
+        }
+        private void btHuy_Click(object sender, EventArgs e)
+        {
+            dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
+            btXoa.Enabled = true;
+            btThem.Enabled = true;
+            btThem.ForeColor = Color.Black;
+            Enable_False();
+        }
+        private void btXoa_Click(object sender, EventArgs e)
+        {
+            Binding();
+            try
+            {
+                DialogResult dr;
+                dr = MessageBox.Show("Xóa" + "\t<" + txtChonLoai.Text + ">" + "?", "Thông Báo", MessageBoxButtons.OKCancel);
+                if (dr == DialogResult.OK)
+                {
+                    dl.MaLoai = Convert.ToInt32(txtMaLoai.Text);
+                    dl.TrangThai = "Hết Phục Vụ";
+                    xldl.LoaiDoUong_TrangThai(dl);
+                    dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
+                    Clear();
+                }
+            }
+            catch { MessageBox.Show(" Lỗi !", "Thông Báo", MessageBoxButtons.OKCancel); }
+        }
+
+        private void btLuu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dl.TenLoai = txtChonLoai.Text;
+                if (them)
+                {
+                    xldl.LoaiDoUong_INSERT(dl);
+                    dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
+                }
+                Clear();
+                btThem.Enabled = true;
+            }
+            catch// lỗi khi chưa nhập đủ các ô
+            { MessageBox.Show("Chưa Nhập Dữ Liệu", "!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
+        private void btThem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Enable_True();
+                them = true;
+                btXoa.Enabled = false;
+                btThem.ForeColor = Color.Red;
+            }
+            catch { MessageBox.Show("\tKiểm Tra Lại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
+
+        private void btPhucHoi_Click(object sender, EventArgs e)
+        {
+            Binding();
+            try
+            {
+                DialogResult dr;
+                dr = MessageBox.Show("Phục Vụ Lại" + "\t<" + txtChonLoai.Text + ">" + "?", "Thông Báo", MessageBoxButtons.OKCancel);
+                if (dr == DialogResult.OK)
+                {
+                    //dl.MaLoai = Convert.ToInt32(txtMaLoai.Text);
+                    dl.TrangThai = "";
+                    xldl.LoaiDoUong_TrangThai(dl);
+                    dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
+                    Clear();
+                }
+            }
+            catch { MessageBox.Show(" Lỗi !", "Thông Báo", MessageBoxButtons.OKCancel); }
+        }
+
+        private void ucQuanLy_LoaiSanPham_Load(object sender, EventArgs e)
+        {
+            dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
+            Enable_False();
+        }
+        private void txtChonLoai_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                dl.TuKhoa = txtChonLoai.Text;
+                dtgMenu.DataSource = xldl.LoaiDoUong_Search(dl);
+                if (txtChonLoai.Text == "")
+                {
+                    dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
+                }
+            }
+            catch { MessageBox.Show("\tKiểm Tra Lại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
+        bool them = false;
     }
 }
