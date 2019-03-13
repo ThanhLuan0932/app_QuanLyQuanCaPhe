@@ -23,7 +23,7 @@ namespace BUS
         }
         public DataTable Gio_Select(DTO_HoaDon dl)
         {
-            return xl.table_Select("set dateformat dmy select Gio, TenDoUong,sum(Tong) as [Tong] from ChiTietBanHang where MaChiNhanh ='" + dl.MaChiNhanh + "' group by Gio, TenDoUong order by sum(Tong) desc");
+            return   xl.table_Select("set dateformat dmy select Gio, TenDoUong,sum(Tong) as [Tong] from ChiTietBanHang where MaChiNhanh ='" + dl.MaChiNhanh + "' group by Gio, TenDoUong order by sum(Tong) desc");
         }
         public DataTable ChiNhanh_select(DTO_HoaDon dl)
         {
