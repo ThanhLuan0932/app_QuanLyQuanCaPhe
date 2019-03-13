@@ -37,12 +37,6 @@ namespace GUI
             }
             catch { MessageBox.Show("\tKiểm Tra Lại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
-
-        private void dtgNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             try
@@ -67,6 +61,15 @@ namespace GUI
         {
             txtTim.Enabled = false;
             txtTim.Clear();
+        }
+        private void txtTim_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                dl.TenNhanVien = txtTim.Text;
+                dtgNhanVien.DataSource = xldl.NV_Search(dl);
+            }
+            catch { MessageBox.Show("\tKiểm Tra Lại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
     }
 }
