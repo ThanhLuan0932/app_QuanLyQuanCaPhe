@@ -31,7 +31,11 @@ namespace GUI
 
         private void btnXemTatCa_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                dtgNhanVien.DataSource = xldl.TatCaThongTinNhanVien_Select(dl);
+            }
+            catch { MessageBox.Show("\tKiểm Tra Lại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void dtgNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
