@@ -62,5 +62,11 @@ namespace GUI
             }
             catch { MessageBox.Show("\tKiểm Tra Lại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            txtTim.Enabled = false;
+            txtTim.Clear();
+        }
     }
 }
