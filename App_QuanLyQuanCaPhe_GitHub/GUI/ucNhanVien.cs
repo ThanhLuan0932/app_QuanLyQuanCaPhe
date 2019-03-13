@@ -48,5 +48,15 @@ namespace GUI
             }
             catch { MessageBox.Show("\tKiểm Tra Lại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
+
+        private void btXem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dl.MaChiNhanh = cbChonChiNhanh.SelectedValue.ToString();
+                dtgNhanVien.DataSource = xldl.ThongTinNhanVien_Select(dl);
+            }
+            catch { MessageBox.Show("\tKiểm Tra Lại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
     }
 }
