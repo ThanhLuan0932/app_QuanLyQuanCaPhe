@@ -38,5 +38,15 @@ namespace GUI
         {
 
         }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTim.Enabled = true;
+                txtTim.Clear();
+            }
+            catch { MessageBox.Show("\tKiểm Tra Lại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
     }
 }

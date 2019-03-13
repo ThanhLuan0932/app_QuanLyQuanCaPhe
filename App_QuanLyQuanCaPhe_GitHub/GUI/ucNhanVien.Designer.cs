@@ -147,6 +147,7 @@
             this.btnTimKiem.TabIndex = 12;
             this.btnTimKiem.Text = "   Tìm ";
             this.btnTimKiem.UseVisualStyleBackColor = false;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // SDT
             // 
