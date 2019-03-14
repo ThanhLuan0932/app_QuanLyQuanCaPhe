@@ -5,7 +5,9 @@ using System.Text;
 
 namespace DTO
 {
-    public class Class1
+    public class DTO_DangNhap
     {
+        public String TaiKhoan { get; set; }
+        public String MatKhau { get; set; }
     }
 }
