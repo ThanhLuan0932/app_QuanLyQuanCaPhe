@@ -15,5 +15,9 @@ namespace BUS
         {
             return xl.table_Select("select * from MayChu");
         }
+        public DataTable TK_Check(DTO_DangNhap dl)
+        {
+            return xl.table_Select("select * from MayChu where TaiKhoan_admin=N'" + dl.TaiKhoan + "' and MatKhau_admin=N'" + dl.MatKhau + "'");
+        }
     }
 }
