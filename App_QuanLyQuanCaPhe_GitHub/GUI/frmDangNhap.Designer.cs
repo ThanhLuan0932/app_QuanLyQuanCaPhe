@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnThoat = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMatKhau = new System.Windows.Forms.TextBox();
             this.txtTaiKhoan = new System.Windows.Forms.TextBox();
@@ -46,42 +44,29 @@
             this.txtTaiKhoanDangNhap = new System.Windows.Forms.TextBox();
             this.txtMatKhauDangNhap = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.btnThoat = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDangNhap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnThoat.FlatAppearance.BorderSize = 0;
-            this.btnThoat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Maroon;
-            this.btnThoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThoat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThoat.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnThoat.Location = new System.Drawing.Point(14, 12);
-            this.btnThoat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(57, 38);
-            this.btnThoat.TabIndex = 62;
-            this.btnThoat.UseVisualStyleBackColor = true;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.Maroon;
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(786, 12);
+            this.panel5.Location = new System.Drawing.Point(613, 12);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(14, 426);
+            this.panel5.Size = new System.Drawing.Size(14, 332);
             this.panel5.TabIndex = 61;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Maroon;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(14, 438);
+            this.panel3.Location = new System.Drawing.Point(14, 344);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(786, 12);
+            this.panel3.Size = new System.Drawing.Size(613, 12);
             this.panel3.TabIndex = 60;
             // 
             // panel2
@@ -90,7 +75,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(14, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(786, 12);
+            this.panel2.Size = new System.Drawing.Size(613, 12);
             this.panel2.TabIndex = 59;
             // 
             // panel1
@@ -99,17 +84,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(14, 450);
+            this.panel1.Size = new System.Drawing.Size(14, 356);
             this.panel1.TabIndex = 58;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(14, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(289, 308);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 57;
-            this.pictureBox1.TabStop = false;
             // 
             // groupBox1
             // 
@@ -212,7 +188,7 @@
             // txtMatKhauDangNhap
             // 
             this.txtMatKhauDangNhap.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMatKhauDangNhap.Location = new System.Drawing.Point(400, 190);
+            this.txtMatKhauDangNhap.Location = new System.Drawing.Point(378, 186);
             this.txtMatKhauDangNhap.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMatKhauDangNhap.Name = "txtMatKhauDangNhap";
             this.txtMatKhauDangNhap.PasswordChar = '*';
@@ -230,11 +206,38 @@
             this.label2.TabIndex = 56;
             this.label2.Text = "Mật Khẩu";
             // 
+            // btnThoat
+            // 
+            this.btnThoat.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnThoat.FlatAppearance.BorderSize = 0;
+            this.btnThoat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Maroon;
+            this.btnThoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThoat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThoat.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnThoat.Image = global::GUI.Properties.Resources.power_button_off;
+            this.btnThoat.Location = new System.Drawing.Point(14, 12);
+            this.btnThoat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(57, 38);
+            this.btnThoat.TabIndex = 62;
+            this.btnThoat.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GUI.Properties.Resources.logo_1;
+            this.pictureBox1.Location = new System.Drawing.Point(14, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(289, 308);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 57;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(627, 356);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
@@ -248,12 +251,13 @@
             this.Controls.Add(this.txtTaiKhoanDangNhap);
             this.Controls.Add(this.txtMatKhauDangNhap);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmDangNhap";
             this.Text = "frmDangNhap";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDangNhap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
