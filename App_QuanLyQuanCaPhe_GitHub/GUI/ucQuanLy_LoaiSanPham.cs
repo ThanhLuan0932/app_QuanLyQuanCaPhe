@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS;
 using DAO;
-using DTO;
+using DTO; 
 namespace GUI
 {
     public partial class ucQuanLy_LoaiSanPham : UserControl
