@@ -10,11 +10,13 @@ using System.Windows.Forms;
 using BUS;
 using DAO;
 using DTO;
+
+
 namespace GUI
 {
-    public partial class ucQuanLy_LoaiSanPham : UserControl
+    public partial class ucQuanLy_SanPham : UserControl
     {
-        public ucQuanLy_LoaiSanPham()
+        public ucQuanLy_SanPham()
         {
             InitializeComponent();
         }
@@ -22,77 +24,152 @@ namespace GUI
         DTO_QuanLy dl = new DTO_QuanLy();
         void Binding()
         {
-            txtChonLoai.DataBindings.Clear();
-            txtChonLoai.DataBindings.Add("Text", dtgMenu.DataSource, "TenLoai");
-            txtMaLoai.DataBindings.Clear();
-            txtMaLoai.DataBindings.Add("Text", dtgMenu.DataSource, "MaLoai");
+            txtTenDoUong.DataBindings.Clear();
+            txtTenDoUong.DataBindings.Add("Text", dtgMenu.DataSource, "TenDoUong");
+            txtGia.DataBindings.Clear();
+            txtGia.DataBindings.Add("Text", dtgMenu.DataSource, "DonGia");
+            txtSTT.DataBindings.Clear();
+            txtSTT.DataBindings.Add("Text", dtgMenu.DataSource, "STT");
+            double gia = double.Parse(txtGia.Text.Replace(",", ""));
+            txtGia.Text = gia.ToString("0,00.##");
+            txtGia.Select(txtGia.TextLength, 0);
         }
         void Clear()
         {
-            txtChonLoai.ResetText();
-            txtMaLoai.Clear();
+            txtTenDoUong.Clear();
+            txtGia.Clear();
         }
         private void Enable_False()
         {
-            txtChonLoai.Enabled = false;
+            txtGia.Enabled = false;
+            txtTenDoUong.Enabled = false;
+            txtMaLoai.Enabled = false;
         }
         private void Enable_True()
         {
-            txtChonLoai.Enabled = true;
+            txtGia.Enabled = true;
+            txtTenDoUong.Enabled = true;
         }
-        private void btHuy_Click(object sender, EventArgs e)
+        public void ChiNhapSo(KeyPressEventArgs e)
         {
-            dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
-            btXoa.Enabled = true;
-            btThem.Enabled = true;
-            btThem.ForeColor = Color.Black;
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))  // chỉ cho phép nhập số và phím điều khiển
+            {
+                e.Handled = true;
+            }
+        }
+        public void ChiNhapChu(KeyPressEventArgs e)
+        {
+            e.Handled = !((e.KeyChar >= 65 && e.KeyChar <= 122) || (e.KeyChar == 8));// chỉ cho phép nhập chữ
+        }
+        private void ucQuanLy_SanPham_Load(object sender, EventArgs e)
+        {
+            cbChonLoai.DataSource = xldl.Loai_Select(dl);
+            cbChonLoai.DisplayMember = "TenLoai";
+            cbChonLoai.ValueMember = "MaLoai";
+            dl.MaLoai = Convert.ToInt32(cbChonLoai.SelectedValue.ToString());
+            //dtgMenu.DataSource = xldl.ChonTen_Select(dl);
             Enable_False();
         }
+        bool them = false;
+
+        private void btThem_Click(object sender, EventArgs e)
+        {
+            Enable_True();
+            them = true;
+            btSua.Enabled = false;
+            btXoa.Enabled = false;
+            btThem.ForeColor = Color.Red;
+        }
+        bool sua = false;
+
+        private void btLuu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dl.MaLoai = Convert.ToInt32(cbChonLoai.SelectedValue.ToString());
+                dl.TenDoUong = txtTenDoUong.Text;
+                dl.DonGia = decimal.Parse(txtGia.Text);
+                if (them)
+                {
+                    xldl.TenDoUong_INSERT(dl);
+                    dtgMenu.DataSource = xldl.ChonTen_Select(dl);
+                }
+                if (sua)
+                {
+                    dl.STT = int.Parse(txtSTT.Text);
+                    xldl.TenDoUong_Update(dl);
+                    dtgMenu.DataSource = xldl.ChonTen_Select(dl);
+                    sua = false;
+                }
+                Clear();
+                btThem.Enabled = true;
+                btSua.ForeColor = Color.Black;
+            }
+            catch// lỗi khi chưa nhập đủ các ô
+            { MessageBox.Show("Chưa Nhập Dữ Liệu", "!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
+
+        private void btSua_Click(object sender, EventArgs e)
+        {
+            Enable_True();
+            sua = true;
+            them = false;
+            btThem.Enabled = false;
+            btXoa.Enabled = false;
+            btSua.ForeColor = Color.Red;
+            Binding();
+        }
+
         private void btXoa_Click(object sender, EventArgs e)
         {
             Binding();
             try
             {
                 DialogResult dr;
-                dr = MessageBox.Show("Xóa" + "\t<" + txtChonLoai.Text + ">" + "?", "Thông Báo", MessageBoxButtons.OKCancel);
+                dr = MessageBox.Show("Xóa" + "\t<" + txtTenDoUong.Text + "> " + " ?", "Thông Báo", MessageBoxButtons.OKCancel);
                 if (dr == DialogResult.OK)
                 {
-                    dl.MaLoai = Convert.ToInt32(txtMaLoai.Text);
+                    dl.STT = Convert.ToInt32(txtSTT.Text);
                     dl.TrangThai = "Hết Phục Vụ";
-                    xldl.LoaiDoUong_TrangThai(dl);
-                    dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
+                    xldl.TenDoUong_TrangThai(dl);
+                    dtgMenu.DataSource = xldl.ChonTen_Select(dl);
                     Clear();
                 }
             }
             catch { MessageBox.Show(" Lỗi !", "Thông Báo", MessageBoxButtons.OKCancel); }
         }
 
-        private void btLuu_Click(object sender, EventArgs e)
+        private void btHuy_Click(object sender, EventArgs e)
         {
-            try
-            {
-                dl.TenLoai = txtChonLoai.Text;
-                if (them)
-                {
-                    xldl.LoaiDoUong_INSERT(dl);
-                    dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
-                }
-                Clear();
-                btThem.Enabled = true;
-            }
-            catch// lỗi khi chưa nhập đủ các ô
-            { MessageBox.Show("Chưa Nhập Dữ Liệu", "!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            btSua.Enabled = true;
+            btXoa.Enabled = true;
+            btThem.Enabled = true;
+            btThem.ForeColor = Color.Black;
+            btSua.ForeColor = Color.Black;
+            Enable_False();
+            dl.MaLoai = Convert.ToInt32(cbChonLoai.SelectedValue.ToString());
+            dtgMenu.DataSource = xldl.ChonTen_Select(dl);
         }
-        private void btThem_Click(object sender, EventArgs e)
+
+        private void txtGia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ChiNhapSo(e);
+        }
+
+        private void txtGia_Leave(object sender, EventArgs e)
         {
             try
             {
-                Enable_True();
-                them = true;
-                btXoa.Enabled = false;
-                btThem.ForeColor = Color.Red;
+                double gia = double.Parse(txtGia.Text.Replace(",", ""));
+                txtGia.Text = gia.ToString("0,00.##");
+                txtGia.Select(txtGia.TextLength, 0);
             }
-            catch { MessageBox.Show("\tKiểm Tra Lại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch { MessageBox.Show("Bạn Chưa Nhập Giá !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
+
+        private void cbChonLoai_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
 
         private void btPhucHoi_Click(object sender, EventArgs e)
@@ -101,37 +178,44 @@ namespace GUI
             try
             {
                 DialogResult dr;
-                dr = MessageBox.Show("Phục Vụ Lại" + "\t<" + txtChonLoai.Text + ">" + "?", "Thông Báo", MessageBoxButtons.OKCancel);
+                dr = MessageBox.Show("Phục Vụ Lại" + "\t<" + txtTenDoUong.Text + ">" + "?", "Thông Báo", MessageBoxButtons.OKCancel);
                 if (dr == DialogResult.OK)
                 {
-                    //dl.MaLoai = Convert.ToInt32(txtMaLoai.Text);
+                    dl.STT = Convert.ToInt32(txtSTT.Text);
                     dl.TrangThai = "";
-                    xldl.LoaiDoUong_TrangThai(dl);
-                    dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
+                    xldl.TenDoUong_TrangThai(dl);
+                    dtgMenu.DataSource = xldl.ChonTen_Select(dl);
                     Clear();
                 }
             }
             catch { MessageBox.Show(" Lỗi !", "Thông Báo", MessageBoxButtons.OKCancel); }
         }
 
-        private void ucQuanLy_LoaiSanPham_Load(object sender, EventArgs e)
+        private void cbChonLoai_Click(object sender, EventArgs e)
         {
-            dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
-            Enable_False();
+            ucQuanLy_SanPham_Load(sender, e);
         }
-        private void txtChonLoai_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void cbChonLoai_SelectedValueChanged(object sender, EventArgs e)
         {
             try
             {
-                dl.TuKhoa = txtChonLoai.Text;
-                dtgMenu.DataSource = xldl.LoaiDoUong_Search(dl);
-                if (txtChonLoai.Text == "")
-                {
-                    dtgMenu.DataSource = xldl.ChonLoai_Select(dl);
-                }
+                txtMaLoai.Text = cbChonLoai.SelectedValue.ToString();
             }
             catch { MessageBox.Show("\tKiểm Tra Lại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
         }
-        bool them = false;
+
+        private void btTim_Click(object sender, EventArgs e)
+        {
+
+            dl.MaLoai = Convert.ToInt32(txtMaLoai.Text);
+            dtgMenu.DataSource = xldl.ChonTen_Select(dl);
+        }
+
+        private void cbChonLoai_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
