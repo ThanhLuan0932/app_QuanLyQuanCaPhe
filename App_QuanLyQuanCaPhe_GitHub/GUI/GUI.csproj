@@ -51,11 +51,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ucNhanVien.cs">
+    <Compile Include="ucQuanLy_SanPham.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucNhanVien.Designer.cs">
-      <DependentUpon>ucNhanVien.cs</DependentUpon>
+    <Compile Include="ucQuanLy_SanPham.Designer.cs">
+      <DependentUpon>ucQuanLy_SanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="ucQuanLy_LoaiSanPham.cs">
       <SubType>UserControl</SubType>
@@ -72,8 +72,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ucNhanVien.resx">
-      <DependentUpon>ucNhanVien.cs</DependentUpon>
+    <EmbeddedResource Include="ucQuanLy_SanPham.resx">
+      <DependentUpon>ucQuanLy_SanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucQuanLy_LoaiSanPham.resx">
       <DependentUpon>ucQuanLy_LoaiSanPham.cs</DependentUpon>
