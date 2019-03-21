@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class Form1
+    partial class frmHeThong
     {
         /// <summary>
         /// Required designer variable.
