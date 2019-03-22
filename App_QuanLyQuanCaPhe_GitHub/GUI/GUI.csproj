@@ -49,6 +49,12 @@
     <Compile Include="frmHeThong.Designer.cs">
       <DependentUpon>frmHeThong.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDangNhap.Designer.cs">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ucQuanLy_SanPham.cs">
@@ -63,6 +69,9 @@
     <Compile Include="ucQuanLy_LoaiSanPham.Designer.cs">
       <DependentUpon>ucQuanLy_LoaiSanPham.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmDangNhap.resx">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -71,6 +80,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ucQuanLy_SanPham.resx">
       <DependentUpon>ucQuanLy_SanPham.cs</DependentUpon>
