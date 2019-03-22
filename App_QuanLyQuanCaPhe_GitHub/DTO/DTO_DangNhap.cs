@@ -9,6 +9,6 @@ namespace DTO
     {
         public String TaiKhoan { get; set; }
         public String MatKhau { get; set; }
-        public String Luan { get; set; }
+      
     }
 }
