@@ -19,16 +19,8 @@ namespace GUI
         DTO_DangNhap dl = new DTO_DangNhap();
         public frmDangNhap()
         {
-            InitializeComponent();
-            Thread t = new Thread(new ThreadStart(SplashStart));
-            t.Start();
-            Thread.Sleep(2000);// đặt thời gian chạy xong
-            t.Abort();
-        }
-        public void SplashStart()
-        {
-            Application.Run(new frmManHinhChao());// gọi form Welcome 
-        }
+            InitializeComponent();           
+        }       
 
         private void frmDangNhap_Load(object sender, EventArgs e)
         {
